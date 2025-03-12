@@ -1,0 +1,31 @@
+{
+  "name": "@docmee/sdk-ui",
+  "version": "1.1.6",
+  "description": "Docmee 文多多 AiPPT 的UI集成SDK，可通过本SDK快速集成文多多AiPPT的UI",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/docmee/sdk-ui"
+  },
+  "homepage": "https://docmee.cn/open-platform/ui-sdk",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "docmee",
+    "文多多AiPPT",
+    "sdk"
+  ],
+  "author": "Micah",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "query-string": "^9.1.1"
+  },
+  "devDependencies": {
+    "@types/query-string": "^6.3.0",
+    "tsup": "^8.4.0",
+    "vite": "^6.2.0"
+  }
+}
