@@ -12,6 +12,7 @@ import { DocmeeUI } from "@docmee/sdk-ui";
       "Content-Type": "application/json",
     },
   });
+
   const json = await res.json();
 
   const docmee = new DocmeeUI({
@@ -40,5 +41,9 @@ import { DocmeeUI } from "@docmee/sdk-ui";
 
   docmee.on("error", (msg) => {
     console.log(msg);
+  });
+
+  docmee.on("changeSlideIndex", ({ data }) => {
+    data.slideIndex;
   });
 })();

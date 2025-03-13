@@ -1,24 +1,22 @@
 type UIEventName =
-  | 'invalid-token'
-  | 'mounted'
-  | 'beforeGenerate'
-  | 'beforeCreateCustomTemplate'
-  | 'afterCreateCustomTemplate'
-  | 'charge'
-  | 'afterGenerate'
-  | 'beforeDownload'
-  | 'user-info'
-  | 'manuallySavePPT'
-  | 'error'
-  | 'toggleGenerateMode'
-  | 'pageChange'
-  | 'slideChange'
+  | "invalid-token"
+  | "mounted"
+  | "beforeGenerate"
+  | "beforeCreateCustomTemplate"
+  | "afterCreateCustomTemplate"
+  | "charge"
+  | "afterGenerate"
+  | "beforeDownload"
+  | "user-info"
+  | "manuallySavePPT"
+  | "error"
+  | "toggleGenerateMode"
+  | "pageChange"
+  | "changeSlideIndex";
 
 type EventMessage = {
-  type: UIEventName
-  data: any
-}
+  type: UIEventName;
+  data: any;
+};
 
-type EventCallback = (
-  eventMessage: EventMessage,
-) => void | Promise<boolean> | boolean
+type EventCallback = (eventMessage: EventMessage) => void | Promise<boolean> | boolean;
