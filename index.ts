@@ -59,7 +59,11 @@ export class DocmeeUI {
   }
 
   public on(eventName: UIEventName, callback: EventCallback) {
-    this._eventListeners[eventName].push(callback);
+    if (!this._eventListeners[eventName]) {
+      this._eventListeners[eventName] = [callback];
+    } else {
+      this._eventListeners[eventName].push(callback);
+    }
   }
 
   private _eventListeners: Record<UIEventName, EventCallback[]> = {

@@ -1,6 +1,6 @@
 {
   "name": "@docmee/sdk-ui",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "Docmee 文多多 AiPPT 的UI集成SDK，可通过本SDK快速集成文多多AiPPT的UI",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
