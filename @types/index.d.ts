@@ -9,7 +9,6 @@ declare global {
     | "templateMarker";
 
   interface InitOptions {
-
     /**
      * 容器
      *  如果传入字符串，则表示这个容器元素的id
@@ -41,7 +40,7 @@ declare global {
     lang?: string;
 
     /** 创建PPT 版本, V1是步骤式，V2是对话式 */
-    creatorVersion?: 'v1' | 'v2'
+    creatorVersion?: "v1" | "v2";
 
     /**
      * 注入 CSS 样式
@@ -50,8 +49,7 @@ declare global {
      * @example #docmee_SdkContainer {background: white !important;}
      * @example https://abc.cn/style.css
      * */
-    css?: string
-
+    css?: string;
 
     creatorData?: {
       files?: File[];
@@ -79,7 +77,6 @@ declare global {
     prompt?: string;
     /** **多轮对话**  助手反问聊天对话，反问过程中如需终止直接生成请设置 questionMode 为 false 调用接口*/
     messages?: GenerateContentContextMessage[];
-
   }
 
   interface GenerateContentContextMessage {

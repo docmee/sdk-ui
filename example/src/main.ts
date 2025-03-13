@@ -1,4 +1,4 @@
-import { DocmeeUI } from "@docmee/sdk-ui";
+import { CreatorType, DocmeeUI } from "@docmee/sdk-ui";
 
 (async function main() {
   const res = await fetch("https:/docmee.cn/api/user/createApiToken", {
@@ -17,31 +17,16 @@ import { DocmeeUI } from "@docmee/sdk-ui";
 
   const docmee = new DocmeeUI({
     container: "app",
-    page: "dashboard",
+    page: "creator-v2",
     token: json.data.token,
     mode: "light",
+    creatorData: { type: CreatorType.AI_GEN, subject: "AI未来十年的发展" },
     lang: "zh",
+    creatorVersion: "v2",
+    onMessage: console.log,
   });
 
-  docmee.on("mounted", (msg) => {
-    docmee.sendMessage({ type: "success", content: "你好 💭" });
+  document.getElementById("toCreator").addEventListener("click", () => {
+    docmee.navigate({ page: "creator-v2" });
   });
-
-  docmee.on("beforeDownload", () => {
-    return false; // 返回false 阻止下载
-  });
-
-  docmee.on("beforeGenerate", (msg) => {
-    console.log(msg);
-  });
-
-  docmee.on("pageChange", (msg) => {
-    console.log(msg);
-  });
-
-  docmee.on("error", (msg) => {
-    console.log(msg);
-  });
-
-  docmee.on("changeSlideIndex", ({ data }) => {});
 })();
