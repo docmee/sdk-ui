@@ -17,14 +17,14 @@ import { DocmeeUI } from "@docmee/sdk-ui";
 
   const docmee = new DocmeeUI({
     container: "app",
-    page: "creator-v2",
+    page: "dashboard",
     token: json.data.token,
     mode: "light",
     lang: "zh",
   });
 
   docmee.on("mounted", (msg) => {
-    console.log(msg);
+    docmee.sendMessage({ type: "success", content: "你好 💭" });
   });
 
   docmee.on("beforeDownload", () => {
@@ -43,7 +43,5 @@ import { DocmeeUI } from "@docmee/sdk-ui";
     console.log(msg);
   });
 
-  docmee.on("changeSlideIndex", ({ data }) => {
-    data.slideIndex;
-  });
+  docmee.on("changeSlideIndex", ({ data }) => {});
 })();
