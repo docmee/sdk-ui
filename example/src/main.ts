@@ -29,7 +29,6 @@ import { DocmeeUI } from "@docmee/sdk-ui";
   document.getElementById("toCreator").addEventListener("click", () => {
     docmee.navigate({ page: "creator-v2" });
   });
-
   document.getElementById("toEditor").addEventListener("click", () => {
     docmee.navigate({ page: "editor", pptId: "" });
   });
