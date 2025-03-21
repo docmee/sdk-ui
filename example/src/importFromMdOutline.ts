@@ -1,7 +1,7 @@
 import { CreatorType, DocmeeUI } from '@docmee/sdk-ui'
 
 const docmeeUI = new DocmeeUI({
-  container: 'app',
+ container: 'app',
   page: 'creator-v2',
   token: 'xxxx',
   mode: 'light',

@@ -1,4 +1,4 @@
-import { DocmeeUI } from "@docmee/sdk-ui";
+import { CreatorType, DocmeeUI } from "@docmee/sdk-ui"
 
 (async function main() {
   const res = await fetch("https:/docmee.cn/api/user/createApiToken", {
@@ -18,9 +18,13 @@ import { DocmeeUI } from "@docmee/sdk-ui";
   const docmee = new DocmeeUI({
     container: "app",
     page: "dashboard",
+    creatorData: {
+      text: "",
+      creatorNow: true,
+      type: CreatorType.AI_GEN,
+    },
     token: json.data.token,
     mode: "light",
-    // creatorData: { type: CreatorType.AI_GEN, subject: "AI未来十年的发展" },
     lang: "zh",
     creatorVersion: "v2",
     onMessage: console.log,
@@ -30,6 +34,6 @@ import { DocmeeUI } from "@docmee/sdk-ui";
     docmee.navigate({ page: "creator-v2" });
   });
   document.getElementById("toEditor").addEventListener("click", () => {
-    docmee.navigate({ page: "editor", pptId: "" });
+    docmee.navigate({ page: "editor", pptId: "1839497555390750720" });
   });
 })();

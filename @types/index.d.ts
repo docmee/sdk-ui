@@ -51,13 +51,15 @@ declare global {
      * */
     css?: string;
 
-    creatorData?: {
-      files?: File[];
-      content?: string;
-      subject?: string;
-      type: CreatorType;
-      options?: CreatorDataOptions;
-    };
+    creatorData?:
+      | { subject?: string; text?: string; creatorNow?: boolean }
+      | {
+          files?: File[];
+          content?: string;
+          subject?: string;
+          type?: CreatorType;
+          options?: CreatorDataOptions;
+        };
   }
 
   interface CreatorDataOptions {
