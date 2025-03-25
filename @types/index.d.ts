@@ -51,6 +51,43 @@ declare global {
      * */
     css?: string;
 
+    /**
+     * iframe 背景颜色，可填入颜色或者图片 url 地址
+     *
+     */
+    background?: string;
+
+    /**
+     * iframe 背景大小 与 CSS 中的 background-size 语法相同
+     */
+    backgroundSize?: string | number;
+
+    /**
+     *  内边距（也就是 css 的 padding，语法相同）
+     */
+    padding?: string | number;
+
+    /**
+     * 下载文件选项 返回 false 表示禁用下载，如果只想打开一种下载方式，可以传递数组`['pptx']`表示只允许下载为 pptx 格式
+     *
+     * @example false
+     * @example ['pdf']
+     */
+    downloadButton?: boolean | ("pptx" | "pdf")[];
+
+    /**
+     *  生成 PPT 方式，topic：主题生成，material：外部资料
+     * 只在V1  中能使用
+     *  @example "topic"
+     */
+    creatorMode?: "topic" | "material";
+
+    /**
+     * 适配移动端
+     *
+     * */
+    isMobile?: boolean;
+
     creatorData?:
       | { subject?: string; text?: string; creatorNow?: boolean }
       | {

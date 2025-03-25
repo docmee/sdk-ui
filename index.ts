@@ -59,11 +59,7 @@ export class DocmeeUI {
   }
 
   public on(eventName: UIEventName, callback: EventCallback) {
-    if (!this._eventListeners[eventName]) {
-      this._eventListeners[eventName] = [callback];
-    } else {
-      this._eventListeners[eventName].push(callback);
-    }
+    this._eventListeners[eventName] = [...(this._eventListeners[eventName] || []), callback];
   }
 
   private _eventListeners: Record<UIEventName, EventCallback[]> = {
@@ -81,6 +77,7 @@ export class DocmeeUI {
     pageChange: [],
     changeSlideIndex: [],
     "invalid-token": [],
+    beforeCreatePpt: [],
   };
 
   private _postMessage(message) {
@@ -95,7 +92,7 @@ export class DocmeeUI {
     if (page === "editor" && !otherOptions.pptId) throw new Error("初始化editor页面时，必须传入pptId");
 
     this.query = Object.assign({}, this.query, otherOptions);
-    this.docmeeHref = getIframeUrl(page);
+    this.docmeeHref = getIframeUrl(page, otherOptions.creatorVersion);
     this.updateToken(token);
     this._initIframe(true);
   }

@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@docmee/sdk-ui": "file:.."
+    "@docmee/sdk-ui": "file:../"
   },
   "devDependencies": {
     "vite": "^6.2.0"

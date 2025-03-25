@@ -1,4 +1,4 @@
-import { CreatorType, DocmeeUI } from "@docmee/sdk-ui"
+import { CreatorType, DocmeeUI } from "../../dist/index";
 
 (async function main() {
   const res = await fetch("https:/docmee.cn/api/user/createApiToken", {
@@ -17,7 +17,7 @@ import { CreatorType, DocmeeUI } from "@docmee/sdk-ui"
 
   const docmee = new DocmeeUI({
     container: "app",
-    page: "dashboard",
+    page: "creator",
     creatorData: {
       text: "",
       creatorNow: true,
@@ -27,13 +27,13 @@ import { CreatorType, DocmeeUI } from "@docmee/sdk-ui"
     mode: "light",
     lang: "zh",
     creatorVersion: "v2",
-    onMessage: console.log,
+    // onMessage: console.log,
   });
 
-  document.getElementById("toCreator").addEventListener("click", () => {
-    docmee.navigate({ page: "creator-v2" });
-  });
-  document.getElementById("toEditor").addEventListener("click", () => {
-    docmee.navigate({ page: "editor", pptId: "1839497555390750720" });
+  docmee.on("error", console.log);
+  docmee.on("invalid-token", console.log);
+  docmee.on("beforeCreatePpt", (msg) => {
+    console.log(msg);
+    // return false;
   });
 })();
