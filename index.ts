@@ -1,6 +1,6 @@
 import queryString from "query-string";
 import { CreatorType } from "./@types/index.d";
-import { docmeeContext, getIframeUrl, pageKeyHrefMap } from "./utils";
+import { docmeeContext, getIframeUrl, getPageKey, pageKeyHrefMap } from "./utils";
 
 // const BASE_URL = 'https://docmee.cn'
 // const BASE_URL = 'https://location:8125'
@@ -9,6 +9,7 @@ import { docmeeContext, getIframeUrl, pageKeyHrefMap } from "./utils";
  * Docmee UI SDK class
  */
 export class DocmeeUI {
+  private creatorVersion?: InitOptions["creatorVersion"];
   private token: string;
   private container: HTMLDivElement;
   private docmeeHref: string = getIframeUrl("dashboard");
@@ -34,6 +35,7 @@ export class DocmeeUI {
     // option模式就是简单的同步模式，初始化docmee时，iframe就会创建
     // async模式就不一样，初始化docmee时，iframe不会被立即创建，在调用 init 方法时，iframe才会创建出来。
     this.onMessage = onMessage;
+    this.creatorVersion = otherOptions.creatorVersion;
     if (typeof container == "string") {
       this.container = document.getElementById(container) as HTMLDivElement;
     } else {
@@ -224,11 +226,14 @@ export class DocmeeUI {
    */
   public navigate({ page, pptId, templateId }: { page: string; pptId?: string; templateId?: string }) {
     const href = pageKeyHrefMap[page];
+
     if (!href) throw new Error(`页面${page} 不存在`);
+    const key = getPageKey(page, this.creatorVersion);
+
     this._postMessage({
       type: "nav",
       data: {
-        page,
+        page: key,
         token: this.token,
         pptId,
         templateId,

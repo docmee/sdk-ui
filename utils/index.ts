@@ -12,12 +12,7 @@ export const pageKeyHrefMap: Record<EntryPage, string> = {
   templateMarker: `sdk-ui/marker`,
 };
 
-export const getBaseURL = () => {
-  return docmeeContext["BASE_URL"];
-};
-
-export const getIframeUrl = (key: string, creatorVersion?: InitOptions["creatorVersion"]) => {
-
+export const getPageKey = (key: string, creatorVersion?: InitOptions["creatorVersion"]) => {
   if (/^(creator)/.test(key)) {
     let suffix = "";
     if (creatorVersion) {
@@ -25,9 +20,22 @@ export const getIframeUrl = (key: string, creatorVersion?: InitOptions["creatorV
     }
     key = `creator${suffix}`;
   }
+  return key;
+};
 
-  const pathname = pageKeyHrefMap[key],
-    BASE_URL = getBaseURL();
+export const getBaseURL = () => {
+  return docmeeContext["BASE_URL"];
+};
+
+export const getPathname = (key: string, creatorVersion?: InitOptions["creatorVersion"]) => {
+  const pathname = pageKeyHrefMap[key];
+  return pathname;
+};
+
+export const getIframeUrl = (key: string, creatorVersion?: InitOptions["creatorVersion"]) => {
+  key = getPageKey(key, creatorVersion);
+  const BASE_URL = getBaseURL(),
+    pathname = getPathname(key, creatorVersion);
 
   return BASE_URL.endsWith("/") ? `${BASE_URL}${pathname}` : `${BASE_URL}/${pathname}`;
 };
