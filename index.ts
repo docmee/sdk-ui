@@ -114,7 +114,7 @@ export class DocmeeUI {
     iframe.style.border = "0";
     iframe.style.outline = "none";
     iframe.style.padding = "0px";
-    iframe.setAttribute("allowfullscreen", "true");
+    iframe.setAttribute("allow", `fullscreen *;clipboard-read; clipboard-write;payment; cross-origin-isolated`);
 
     this.iframe = iframe;
     this.iframeMounted = false;
@@ -239,6 +239,13 @@ export class DocmeeUI {
         templateId,
       },
     });
+  }
+
+  /**
+   * 继续生成PPT，仅在V2中可用
+   */
+  public continueCreatePpt() {
+    this._postMessage({ type: "continueCreatePpt" });
   }
 
   /**
