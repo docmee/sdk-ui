@@ -121,6 +121,7 @@ export class DocmeeUI {
     // 清空iframe中的内容并挂载iframe
     container.innerHTML = "";
     container.appendChild(iframe);
+
     window.addEventListener("message", async (event) => {
       if (event.source !== this.iframe?.contentWindow) return;
       const message = event.data as { type: UIEventName; data: any };
@@ -179,6 +180,15 @@ export class DocmeeUI {
         }, 200);
       }, 300);
     });
+  }
+
+  /**
+   * 在编辑页面跳转到对应的幻灯片
+   *
+   * @param targetPageIndex 跳转的幻灯片下标
+   */
+  public updateSlidePageIndex(targetPageIndex: number) {
+    this._postMessage({ type: "changeSlidePageIndex", data: { pageIndex: targetPageIndex } });
   }
 
   /**

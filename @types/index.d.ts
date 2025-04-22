@@ -97,6 +97,19 @@ declare global {
           type?: CreatorType;
           options?: CreatorDataOptions;
         };
+
+    /**
+     * 编辑器显示区域
+     *
+     * 不传或者传空数组表示显示全部
+     *
+     * - `viewport` 主编辑视窗
+     * - `slidesList` 左侧幻灯片列表
+     * - `header` 顶部状态栏
+     * - `statusBar` 底部状态栏
+     * - `tools` 右侧工具栏
+     */
+    editorDisplay?: EditorDisplayKey[];
   }
 
   interface CreatorDataOptions {
@@ -122,6 +135,8 @@ declare global {
     role: "assistant" | "user";
     content: string;
   }
+
+  type EditorDisplayKey = "viewport" | "slidesList" | "statusBar" | "tools" | "header";
 }
 
 export enum CreatorType {
