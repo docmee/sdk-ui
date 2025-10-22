@@ -145,14 +145,17 @@ export class DocmeeUI {
       res = await this.onMessage?.(message);
       const onCallbacks = this._eventListeners[message.type];
       if (onCallbacks?.length > 0) {
-        onCallbacks.forEach((callback) => {
-          try {
-            const result = callback?.(message);
-            if (result !== undefined) {
-              res = result;
-            }
-          } catch {}
-        });
+         for (const callback of onCallbacks) {  
+            try {
+             let result = callback?.(message);  
+             if (result instanceof Promise) {
+                result = await result;  
+              }
+              if (result !== undefined) {
+               res = result;  
+             }
+            }catch {}
+        };
       }
 
       if (message.type.startsWith("before")) {
