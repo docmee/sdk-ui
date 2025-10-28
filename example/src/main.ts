@@ -1,4 +1,4 @@
-import { CreatorType, DocmeeUI } from "../../dist/index";
+import { CreatorType, DocmeeUI } from "../../dist/index"
 
 (async function main() {
   const res = await fetch("https:/docmee.cn/api/user/createApiToken", {
@@ -19,9 +19,8 @@ import { CreatorType, DocmeeUI } from "../../dist/index";
     container: "app",
     page: "creator",
     creatorData: {
-      text: "",
-      creatorNow: true,
       type: CreatorType.AI_GEN,
+      subject: "Hello, world!",
     },
     token: json.data.token,
     mode: "light",
